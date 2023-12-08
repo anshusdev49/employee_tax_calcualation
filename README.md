@@ -1,24 +1,39 @@
-# README
+# Employee Managment App (for Tax calcuation)
+This is Api based application allows you to calculate taxation employee salary. It's built using Ruby 2.7.8 and utilizes RVM for Ruby version management.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 1. Prerequisites
 
-Things you may want to cover:
+bash```
+ Bundle install
+ ```
+## 2. For Running the Test Suite
+You can run the test suite with following command.
+bash```
+bundle exec rspec
+```
+## 3. For Testing API's
+You can use postman to test API's
+Step 1. Run rails s to start server.
+ API to test
 
-* Ruby version
+1) Creating Employee data.
+   URL: http://localhost:3000/employees
+   Method: Post
+   Body:
+   {
+    "id": 1,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone_numbers": "1234567890",
+    "doj": "2022-01-01",
+    "salary": 50000
+   }
 
-* System dependencies
+2) Show Api
+   URL: http://localhost:3000/employees/1
+   Method:Get
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3) Tax Amount API
+   URL: http://localhost:3000/employees/tax_deduction
+   Method: Get
