@@ -13,7 +13,6 @@ class Employee < ApplicationRecord
   end
 
   def tax_deduction_for_current_year
-    # Consider DOJ while calculating total salary
     months_worked = (Date.current.year * 12 + Date.current.month) - (doj.year * 12 + doj.month)
     total_salary = salary * months_worked
 

@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :update, :destroy]
+  before_action :set_employee, only: [:show, :update, :destroy, :tax_deduction]
 
   def create
     @employee = Employee.new(employee_params)
@@ -28,9 +28,7 @@ class EmployeesController < ApplicationController
   end
 
   def tax_deduction
-    @employee = Employee.find(params[:id])
     deduction = @employee.tax_deduction_for_current_year
-
     render json: deduction
   end
 
@@ -42,18 +40,5 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:employee).permit(:first_name, :last_name, :email, :doj, :salary, :phone_numbers => [])
-  end
-
-  def calculate_tax(salary)
-    case salary
-    when 0..250000
-      0
-    when 250001..500000
-      (salary - 250000) * 0.05
-    when 500001..1000000
-      (500000 * 0.05) + (salary - 500000) * 0.1
-    else
-      (500000 * 0.05) + (500000 * 0.1) + (salary - 1000000) * 0.2
-    end
   end
 end
