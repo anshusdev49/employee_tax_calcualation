@@ -21,19 +21,18 @@ Step 1. Run rails s to start server.
    Method: Post
    Body:
    {
-    "id": 1,
     "first_name": "John",
     "last_name": "Doe",
     "email": "john.doe@example.com",
-    "phone_numbers": "1234567890",
+    "phone_numbers": ["1234567890"],
     "doj": "2022-01-01",
     "salary": 50000
    }
 
 2) Show Api
-   URL: http://localhost:3000/employees/1
+   URL: http://localhost:3000/employees/:id
    Method:Get
 
 3) Tax Amount API
-   URL: http://localhost:3000/employees/tax_deduction
+   URL: http://localhost:3000/employees/:id/tax_deduction
    Method: Get

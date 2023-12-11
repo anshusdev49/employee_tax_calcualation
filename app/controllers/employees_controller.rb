@@ -28,25 +28,10 @@ class EmployeesController < ApplicationController
   end
 
   def tax_deduction
-    employees = Employee.where('doj <= ?', Date.today.end_of_month)
-    result = []
+    @employee = Employee.find(params[:id])
+    deduction = @employee.tax_deduction_for_current_year
 
-    employees.each do |employee|
-      total_salary = employee.total_salary
-      tax_amount = calculate_tax(total_salary)
-      cess_amount = total_salary > 2500000 ? total_salary * 0.02 : 0
-
-      result << {
-        id: employee.id,
-        first_name: employee.first_name,
-        last_name: employee.last_name,
-        yearly_salary: total_salary,
-        tax_amount: tax_amount,
-        cess_amount: cess_amount
-      }
-    end
-
-    render json: result
+    render json: deduction
   end
 
   private
